@@ -9,7 +9,9 @@
     5. 완성된 파일을 스마트폰으로 전송하여 열면 초청장이 보입니다.
     
     수정 방법:
-    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 
+    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 --> 아래의 텍스트를 직접 수정하세요.
+    * '오시는 길' 버튼에 있는 네이버 지도와 구글 지도 링크를 공연장 주소에 맞게 수정해주세요.
+    * 디자인(색상, 폰트)은 Tailwind CSS 클래스를 수정하여 변경할 수 있습니다.
 -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -74,25 +76,6 @@
                 함께해 주시길 바랍니다.
             </p>
             
-            <!-- 프로그램 리스트 추가 -->
-            <div class="pt-4 space-y-2 text-left">
-                <h3 class="text-xl font-bold text-gray-800 text-center">Program</h3>
-                <ul class="list-none space-y-2 text-sm text-gray-700">
-                    <li><span class="font-semibold text-gray-900">[1부]</span><br>
-                        - <span class="font-medium">사랑의 인사</span> (엘가)<br>
-                        - <span class="font-medium">캐논 변주곡</span> (파헬벨)<br>
-                        - <span class="font-medium">문 리버</span> (헨리 맨시니)<br>
-                        - <span class="font-medium">아름다운 세상</span> (박효신)
-                    </li>
-                    <li><span class="font-semibold text-gray-900">[2부]</span><br>
-                        - <span class="font-medium">바흐 무반주 첼로 모음곡 1번</span> (바흐)<br>
-                        - <span class="font-medium">사계 중 '가을'</span> (비발디)<br>
-                        - <span class="font-medium">오페라의 유령 메들리</span> (앤드루 로이드 웨버)<br>
-                        - <span class="font-medium">라디오 스타</span> (노영심)
-                    </li>
-                </ul>
-            </div>
-            
             <!-- 날짜 및 시간 -->
             <div class="flex items-center justify-center space-x-2 text-lg font-medium mt-4">
                 <!-- 캘린더 아이콘 (SVG) -->
@@ -129,7 +112,7 @@
         <!-- 오시는 길 버튼 -->
         <div class="pt-4">
             <!-- 지도 링크를 '사천시 사남면 초전공원'으로 변경 -->
-            <a href="https://map.naver.com/p/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
+            <a href="https://map.naver.com/v5/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
                 class="w-full inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
                 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 네이버 지도로 오시는 길
@@ -145,8 +128,31 @@
             </a>
         </div>
         
+        <!-- 카톡 미리보기 이미지를 초청장 내부에 추가 -->
+        <div class="pt-8">
+            <img src="https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/main/%ED%95%B4%EC%96%91%EC%82%AC%EC%B2%9C%EA%B0%80%EC%A1%B1%EC%9D%8C%EC%95%85%ED%9A%8C(2010)%201.jpg" alt="음악회 포스터 이미지" class="rounded-lg shadow-md w-full">
+        </div>
+
+        <!-- 프로그램 리스트 추가 -->
+        <div class="pt-4 space-y-2 text-left">
+            <h3 class="text-xl font-bold text-gray-800 text-center">Program</h3>
+            <ul class="list-none space-y-2 text-sm text-gray-700">
+                <li><span class="font-semibold text-gray-900">[1부]</span><br>
+                    - <span class="font-medium">사랑의 인사</span> (엘가)<br>
+                    - <span class="font-medium">캐논 변주곡</span> (파헬벨)<br>
+                    - <span class="font-medium">문 리버</span> (헨리 맨시니)<br>
+                    - <span class="font-medium">아름다운 세상</span> (박효신)
+                </li>
+                <li><span class="font-semibold text-gray-900">[2부]</span><br>
+                    - <span class="font-medium">바흐 무반주 첼로 모음곡 1번</span> (바흐)<br>
+                    - <span class="font-medium">사계 중 '가을'</span> (비발디)<br>
+                    - <span class="font-medium">오페라의 유령 메들리</span> (앤드루 로이드 웨버)<br>
+                    - <span class="font-medium">라디오 스타</span> (노영심)
+                </li>
+            </ul>
+        </div>
+
     </div>
 
 </body>
 </html>
-
