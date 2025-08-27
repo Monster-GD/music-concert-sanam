@@ -40,12 +40,16 @@
         .invitation-card {
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        /* 그라데이션 색상 */
+         /* 그라데이션 */
         .text-gradient {
-            background: linear-gradient(90deg, #940B92, #DA0C81, #E95793);
+            /* Fallback 색상 */
+            background: #ff00cc;
+            /* 구형 웹킷 기반 브라우저용 */
+            background: -webkit-linear-gradient(to right, #333399, #ff00cc);
+            /* 최신 브라우저용 */
+            background: linear-gradient(to right, #333399, #ff00cc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        /* 주황그라데이션         background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff4c81); */
         }
     </style>
 </head>
@@ -128,6 +132,7 @@
 
 </body>
 </html>
+
 
 
 
