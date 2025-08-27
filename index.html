@@ -9,8 +9,10 @@
     5. 완성된 파일을 스마트폰으로 전송하여 열면 초청장이 보입니다.
     
     수정 방법:
-    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 -->
-
+    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 --> 아래의 텍스트를 직접 수정하세요.
+    * '오시는 길' 버튼에 있는 네이버 지도와 구글 지도 링크를 공연장 주소에 맞게 수정해주세요.
+    * 디자인(색상, 폰트)은 Tailwind CSS 클래스를 수정하여 변경할 수 있습니다.
+-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,12 +25,13 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f3f0;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            /* 편안하고 부드러운 느낌의 점 패턴 배경 */
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A0A0A0' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='1.5' /%3E%3C/g%3E%3C/svg%3E");
         }
         .invitation-card {
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        /* 그라데이션 색상 변경 */
+        /* 그라데이션 색상 */
         .text-gradient {
             background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff4c81);
             -webkit-background-clip: text;
@@ -40,9 +43,9 @@
     
     <div class="invitation-card bg-white rounded-3xl overflow-hidden max-w-sm w-full mx-auto my-auto p-8 text-center space-y-6 transform transition-transform duration-500 hover:scale-105">
         
-        <!-- 초청장 제목 및 부제 -->
-        <h1 class="text-3xl font-bold text-gray-800 text-gradient">경남문화예술단체 제104호 "자유새" 2025. 찾아가는 음악회</h1>
-        <p class="text-lg text-gray-600">'세미 클래식'과 '대중음악' Festival</p>
+        <!-- 제목과 부제 순서를 변경하여 '세미 클래식' 부분이 메인 제목이 되도록 수정 -->
+        <h1 class="text-4xl font-bold text-gray-800 text-gradient">'세미 클래식'과 '대중음악' Festival</h1>
+        <p class="text-xl font-medium text-gray-600">경남문화예술단체 제104호 "자유새" 2025. 찾아가는 음악회</p>
         
         <!-- 구분선 -->
         <hr class="border-t border-gray-200">
