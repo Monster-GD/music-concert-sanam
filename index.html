@@ -9,10 +9,8 @@
     5. 완성된 파일을 스마트폰으로 전송하여 열면 초청장이 보입니다.
     
     수정 방법:
-    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 --> 아래의 텍스트를 직접 수정하세요.
-    * '오시는 길' 버튼에 있는 네이버 지도와 구글 지도 링크를 공연장 주소에 맞게 수정해주세요.
-    * 디자인(색상, 폰트)은 Tailwind CSS 클래스를 수정하여 변경할 수 있습니다.
--->
+    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,8 +28,9 @@
         .invitation-card {
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+        /* 그라데이션 색상 변경 */
         .text-gradient {
-            background: linear-gradient(90deg, #6366f1, #d8b4fe, #f472b6);
+            background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff4c81);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -42,8 +41,8 @@
     <div class="invitation-card bg-white rounded-3xl overflow-hidden max-w-sm w-full mx-auto my-auto p-8 text-center space-y-6 transform transition-transform duration-500 hover:scale-105">
         
         <!-- 초청장 제목 및 부제 -->
-        <h1 class="text-4xl font-bold text-gray-800 text-gradient">음악회에 초대합니다</h1>
-        <p class="text-lg text-gray-600">작은 울림이 큰 감동으로</p>
+        <h1 class="text-3xl font-bold text-gray-800 text-gradient">경남문화예술단체 제104호 "자유새" 2025. 찾아가는 음악회</h1>
+        <p class="text-lg text-gray-600">'세미 클래식'과 '대중음악' Festival</p>
         
         <!-- 구분선 -->
         <hr class="border-t border-gray-200">
@@ -66,7 +65,7 @@
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span>2025년 11월 1일 (금) 오후 7:30</span>
+                <span>2025. 9. 27 (토) 오후 7시</span>
             </div>
             
             <!-- 장소 -->
@@ -76,19 +75,31 @@
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>OOO 예술의전당 콘서트홀</span>
+                <span>사천시 사남면 '초전공원'</span>
+            </div>
+            
+            <!-- 사회 및 지휘 정보 추가 -->
+            <div class="flex items-center justify-center space-x-2 text-base mt-4">
+                <span class="font-medium">사회:</span>
+                <span>황은영</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2 text-base">
+                <span class="font-medium">지휘:</span>
+                <span>안세환</span>
             </div>
         </div>
 
         <!-- 오시는 길 버튼 -->
         <div class="pt-4">
-            <a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EC%98%88%EC%88%A0%EC%9D%98%EC%A0%84%EB%8B%B9" target="_blank" class="w-full inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <!-- 지도 링크를 변경하려면 아래 href 속성의 URL을 수정하세요. -->
+            <a href="https://map.naver.com/p/search/%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 네이버 지도로 오시는 길
             </a>
         </div>
         
         <div class="pt-2">
-            <a href="https://www.google.com/maps/search/서울+예술의전당" target="_blank" class="w-full inline-block bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+            <!-- 지도 링크를 변경하려면 아래 href 속성의 URL을 수정하세요. -->
+            <a href="https://www.google.com/maps/search/%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                 구글 지도로 오시는 길
             </a>
         </div>
