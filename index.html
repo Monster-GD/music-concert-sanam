@@ -9,7 +9,7 @@
     5. 완성된 파일을 스마트폰으로 전송하여 열면 초청장이 보입니다.
     
     수정 방법:
-    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 
+    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역
 -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -99,16 +99,6 @@
                 </svg>
                 <span>사천시 사남면 <span class="text-red-600 font-bold">'초전공원'</span></span>
             </div>
-
-            <!-- 사회, 지휘 정보 간격 줄임 -->
-            <div class="flex items-center justify-center space-x-2 text-base mt-2">
-                <span class="font-medium">사회:</span>
-                <span>황은영</span>
-            </div>
-            <div class="flex items-center justify-center space-x-2 text-base">
-                <span class="font-medium">지휘:</span>
-                <span>안세환</span>
-            </div>
         </div>
 
         <!-- 오시는 길 버튼 -->
@@ -116,7 +106,7 @@
             <!-- 네이버 지도 링크를 모바일에서도 바로 지도 화면으로 이동하도록 수정 -->
             <a href="https://map.naver.com/v5/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
                 class="w-full inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
-                focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 border-2 border-transparent hover:border-white">
                 네이버 지도로 오시는 길
             </a>
         </div>
@@ -126,7 +116,7 @@
             <!-- 지도 링크를 '사천시 사남면 초전공원'으로 변경 -->
             <a href="https://www.google.com/maps/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
                 class="w-full inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border-2 border-transparent hover:border-white">
                 구글 지도로 오시는 길
             </a>
         </div>
@@ -137,6 +127,16 @@
             <img src="https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/main/%ED%95%B4%EC%96%91%EC%82%AC%EC%B2%9C%EA%B0%80%EC%A1%B1%EC%9D%8C%EC%95%85%ED%9A%8C(2010)%201.jpg" alt="음악회 포스터 이미지" class="rounded-lg shadow-md w-full">
         </div>
 
+        <!-- 사회 및 지휘 정보 추가 -->
+        <div class="flex items-center justify-center space-x-2 text-base mt-2">
+            <span class="font-medium">사회:</span>
+            <span>황은영</span>
+        </div>
+        <div class="flex items-center justify-center space-x-2 text-base">
+            <span class="font-medium">지휘:</span>
+            <span>안세환</span>
+        </div>
+        
         <!-- 프로그램 리스트 추가 -->
         <div class="pt-4 space-y-2 text-left">
             <h3 class="text-xl font-bold text-gray-800 text-center">Program</h3>
@@ -155,8 +155,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
-
 </body>
 </html>
