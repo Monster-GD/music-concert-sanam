@@ -11,14 +11,20 @@
     수정 방법:
     * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역 
 -->
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>음악회에 초대합니다</title>
+    <title>음악회 초대합니다 - 경남문화예술단체</title> <!-- 타이틀 변경 -->
+    
+    <!-- 카카오톡 미리보기를 위한 Open Graph(og) 태그 추가 -->
+    <meta property="og:title" content="경남문화예술단체 제104호 '자유새' 음악회 초대">
+    <meta property="og:description" content="아름다운 선율과 함께하는 소중한 시간에 당신을 초대합니다.">
+    <!-- og:image는 미리보기로 보여질 이미지 URL입니다. 실제 이미지 링크로 변경해 주세요. -->
+    <meta property="og:image" content="https://placehold.co/600x400/FFD700/000000?text=Concert+Invitation">
+    <meta property="og:url" content="https://your-website-url.com"> <!-- 초청장이 업로드된 실제 URL로 변경해 주세요 -->
+    
     <!-- Tailwind CSS를 사용하기 위한 CDN 링크입니다. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -46,9 +52,12 @@
     
     <div class="invitation-card bg-white rounded-3xl overflow-hidden max-w-sm w-full mx-auto my-auto p-8 text-center space-y-6 transform transition-transform duration-500 hover:scale-105">
         
-        <!-- 제목과 부제 순서를 원래대로 되돌리고 글자 크기만 변경 -->
-        <p class="text-xl font-medium text-gray-600">경남문화예술단체 제104호 "자유새" 2025. 찾아가는 음악회</p>
-        <h1 class="text-4xl font-bold text-gray-800 text-gradient">'세미 클래식'과 '대중음악' Festival</h1>
+        <!-- 제목 글자 크기 조정하여 휴대폰에서 줄바꿈 문제 해결 -->
+        <p class="text-lg font-medium text-gray-600">경남문화예술단체 제104호 "자유새" 2025. 찾아가는 음악회</p>
+        <h1 class="text-4xl font-bold text-gray-800 text-gradient leading-tight">
+            '세미 클래식'과 '대중음악'<br>
+            Festival
+        </h1>
         
         <!-- 구분선 -->
         <hr class="border-t border-gray-200">
@@ -97,15 +106,15 @@
 
         <!-- 오시는 길 버튼 -->
         <div class="pt-4">
-            <!-- 지도 링크를 변경하려면 아래 href 속성의 URL을 수정하세요. -->
-            <a href="https://map.naver.com/p/search/%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <!-- 지도 링크를 '사천시 사남면 초전공원'으로 변경 -->
+            <a href="https://map.naver.com/p/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 네이버 지도로 오시는 길
             </a>
         </div>
         
         <div class="pt-2">
-            <!-- 지도 링크를 변경하려면 아래 href 속성의 URL을 수정하세요. -->
-            <a href="https://www.google.com/maps/search/%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+            <!-- 지도 링크를 '사천시 사남면 초전공원'으로 변경 -->
+            <a href="https://www.google.com/maps/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" class="w-full inline-block bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                 구글 지도로 오시는 길
             </a>
         </div>
