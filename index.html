@@ -1,164 +1,235 @@
 <!-- 
-    이 코드는 HTML 파일로 저장하여 사용할 수 있는 모바일 초청장입니다.
-    
+    이 코드는 HTML 파일로 저장하여 사용할 수 있는 좌우 슬라이드 형식의 모바일 초청장입니다.
+    제공해주신 6장의 이미지를 배경으로 사용하여 내용을 대체했습니다.
+
     사용 방법:
     1. 이 코드를 전체 복사합니다.
-    2. 컴퓨터의 텍스트 편집기 (메모장, Visual Studio Code 등)를 엽니다.
+    2. 컴퓨터의 텍스트 편집기(메모장, Visual Studio Code 등)를 엽니다.
     3. 복사한 코드를 붙여넣습니다.
     4. 파일을 '초청장.html'과 같이 '.html' 확장자로 저장합니다.
     5. 완성된 파일을 스마트폰으로 전송하여 열면 초청장이 보입니다.
     
-    수정 방법:
-    * 초대 문구, 날짜, 장소 등은 <!-- 내용 수정 영역
+    특징:
+    * 좌우 스와이프로 페이지를 넘길 수 있습니다.
+    * 좌우 화살표 버튼을 클릭하여 페이지를 이동할 수 있습니다.
+    * 페이지 하단에 현재 페이지를 나타내는 점(인디케이터)이 표시됩니다.
+    * 4페이지 '오시는 길' 이미지 위에 네이버/구글 지도 바로가기 버튼이 있습니다.
 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025. 자유새 찾아가는 음악회에 초대합니다.</title> <!-- 브라우저 탭에 표시되는 제목 -->
+    <title>2024 자유새 정기연주회에 초대합니다.</title>
     
-    <!-- 카카오톡 미리보기를 위한 Open Graph(og) 태그 수정 -->
-    <!-- og:title을 요청하신 제목으로 변경 -->
-    <meta property="og:title" content="2025. 자유새 찾아가는 음악회에 초대합니다.">
-    <!-- og:description을 더 자연스러운 문구로 수정 -->
-    <meta property="og:description" content="아름다운 선율과 함께하는 소중한 시간에 당신을 초대합니다.">
-    <!-- og:image를 더 깔끔한 미리보기 이미지로 변경 -->
-    <meta property="og:image" content="https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/main/%ED%95%B4%EC%96%91%EC%82%AC%EC%B2%9C%EA%B0%80%EC%A1%B1%EC%9D%8C%EC%95%85%ED%9A%8C(2010)%201.jpg">
-    <meta property="og:url" content="https://your-website-url.com"> <!-- 초청장이 업로드된 실제 URL로 변경해 주세요 -->
-    
-    <!-- Tailwind CSS를 사용하기 위한 CDN 링크입니다. -->
+    <!-- Tailwind CSS를 사용하기 위한 CDN 링크 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f3f0;
-            /* 배경 이미지를 URL로 변경하고, 이미지 속성 추가 */
-            /* 1000x1000 사이즈, 보라색(#311B92) 배경에 흰색 글자(#FFFFFF)로 'Music Notes'가 쓰인 임시 이미지입니다. */
-            background-image: url('https://placehold.co/1000x1000/311B92/FFFFFF?text=Music+Notes');
-            background-size: cover; /* 이미지가 전체 화면을 덮도록 설정 */
-            background-position: center; /* 이미지가 중앙에 오도록 설정 */
-            background-repeat: no-repeat; /* 이미지 반복 없애기 */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* 스크롤바 숨기기 */
         }
-        .invitation-card {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
         }
-        /* 그라데이션 색상을 보라색 계통으로 변경 */
-        .text-gradient {
-            background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff4c81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+        .page {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+        }
+        .nav-button-left {
+            left: 1rem;
+        }
+        .nav-button-right {
+            right: 1rem;
+        }
+        .indicators {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .indicator {
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .indicator.active {
+            background-color: white;
+        }
+
+        /* 4페이지 버튼 오버레이 스타일 */
+        .page-4-buttons {
+            position: absolute;
+            bottom: 12%; /* 이미지에 맞게 버튼 위치 조절 */
+            width: 80%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 md:p-8 bg-gray-100">
+<body>
     
-    <div class="invitation-card bg-white rounded-3xl overflow-hidden max-w-sm w-full mx-auto my-auto p-8 text-center space-y-6 transform transition-transform duration-500 hover:scale-105">
-        
-        <!-- 제목 글자 크기 및 줄 간격 조정: 자유새와 음악회 사이 간격 좁히기 -->
-        <div class="space-y-0.5">
-            <p class="text-base font-medium text-gray-600">경남문화예술단체 제104호 "자유새"</p>
-            <p class="text-2xl font-medium text-gray-600">2025. 찾아가는 음악회</p>
-        </div>
+    <div id="container" class="container">
+        <!-- 1페이지 -->
+        <div id="page-1" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_1.jpg');"></div>
 
-        <!-- 텍스트 간격을 균등하게 조절 -->
-        <h1 class="text-4xl font-bold text-gray-800 text-gradient leading-none mb-4">
-            '세미 클래식'과
-        </h1>
-        <h1 class="text-6xl font-bold text-gray-800 text-gradient leading-none mb-8">
-            '대중음악'
-        </h1>
-        <h1 class="text-6xl font-bold text-gray-800 text-gradient leading-none">
-            Festival
-        </h1>
+        <!-- 2페이지 -->
+        <div id="page-2" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_2.jpg');"></div>
         
-        <!-- 구분선 -->
-        <hr class="border-t border-gray-200">
+        <!-- 3페이지 -->
+        <div id="page-3" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_3.jpg');"></div>
 
-        <!-- 초청 내용 및 정보 -->
-        <div class="space-y-4 text-gray-700">
-            <!-- 내용 수정 영역 -->
-            <p class="text-base leading-relaxed">
-                오랜 시간 준비한 음악회를 열게 되었습니다.<br>
-                아름다운 선율과 함께하는 소중한 시간을<br>
-                함께해 주시길 바랍니다.
-            </p>
-            
-            <!-- 날짜 위쪽 여백 추가 -->
-            <div class="flex items-center justify-center space-x-2 text-lg font-medium mt-8">
-                <!-- 캘린더 아이콘 (SVG) -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                <span>2025. 9. 27 (토) 오후 7시</span>
-            </div>
-            
-            <!-- 장소 -->
-            <div class="flex items-center justify-center space-x-2 text-lg font-medium">
-                <!-- 핀 아이콘 (SVG) -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>사천시 사남면 <span class="text-red-600 font-bold">'초전공원'</span></span>
+        <!-- 4페이지: 오시는 길 (버튼 오버레이) -->
+        <div id="page-4" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_4.jpg');">
+            <div class="page-4-buttons">
+                <!-- 네이버 지도 링크를 모바일에서도 바로 지도 화면으로 이동하도록 수정 -->
+                <a href="https://map.naver.com/v5/search/%EC%82%AC%EC%B2%9C%EB%AC%B8%ED%99%94%EC%9B%90" target="_blank" 
+                    class="w-full inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
+                    focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 border-2 border-transparent hover:border-white text-center">
+                    네이버 지도로 오시는 길
+                </a>
+                <!-- 구글 지도 링크를 '사천문화원'으로 변경 -->
+                <a href="https://www.google.com/maps/search/%EC%82%AC%EC%B2%9C%EB%AC%B8%ED%99%94%EC%9B%90" target="_blank" 
+                    class="w-full inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
+                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border-2 border-transparent hover:border-white text-center">
+                    구글 지도로 오시는 길
+                </a>
             </div>
         </div>
 
-        <!-- 지도 버튼 간격 늘리기 -->
-        <div class="pt-4 flex flex-col space-y-3">
-            <!-- 네이버 지도 링크를 모바일에서도 바로 지도 화면으로 이동하도록 수정 -->
-            <a href="https://map.naver.com/v5/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
-                class="w-full inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
-                focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 border-2 border-transparent hover:border-white">
-                네이버 지도로 오시는 길
-            </a>
-        
-            <!-- 지도 링크를 '사천시 사남면 초전공원'으로 변경 -->
-            <a href="https://www.google.com/maps/search/%EC%82%AC%EC%B2%9C%EC%8B%9C%20%EC%82%AC%EB%82%A8%EB%A9%B4%20%EC%B4%88%EC%A0%84%EA%B3%B5%EC%9B%90" target="_blank" 
-                class="w-full inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 hover:shadow-xl 
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border-2 border-transparent hover:border-white">
-                구글 지도로 오시는 길
-            </a>
-        </div>
-        
-        <!-- 카톡 미리보기 이미지를 초청장 내부에 추가 -->
-        <!-- 이미지 아래 간격 줄임 -->
-        <div class="pt-4">
-            <img src="https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/main/%ED%95%B4%EC%96%91%EC%82%AC%EC%B2%9C%EA%B0%80%EC%A1%B1%EC%9D%8C%EC%95%85%ED%9A%8C(2010)%201.jpg" alt="음악회 포스터 이미지" class="rounded-lg shadow-md w-full">
-        </div>
+        <!-- 5페이지 -->
+        <div id="page-5" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_5.jpg');"></div>
 
-        <!-- 사회 및 지휘 정보 추가 -->
-        <div class="flex items-center justify-center space-x-2 text-base mt-2">
-            <span class="font-medium">사회:</span>
-            <span>황은영</span>
-        </div>
-        <div class="flex items-center justify-center space-x-2 text-base">
-            <span class="font-medium">지휘:</span>
-            <span>안세환</span>
-        </div>
-        
-        <!-- 프로그램 리스트 추가 -->
-        <!-- 줄 간격 줄이기 위해 space-y-2를 space-y-0.5로 변경 -->
-        <div class="pt-4 space-y-0.5 text-left">
-            <h3 class="text-xl font-bold text-gray-800 text-center">Program</h3>
-            <ul class="list-none space-y-2 text-sm text-gray-700">
-                <li><span class="font-semibold text-gray-900">[1부]</span><br>
-                    - <span class="font-medium">사랑의 인사</span> (엘가)<br>
-                    - <span class="font-medium">캐논 변주곡</span> (파헬벨)<br>
-                    - <span class="font-medium">문 리버</span> (헨리 맨시니)<br>
-                    - <span class="font-medium">아름다운 세상</span> (박효신)
-                </li>
-                <li><span class="font-semibold text-gray-900">[2부]</span><br>
-                    - <span class="font-medium">바흐 무반주 첼로 모음곡 1번</span> (바흐)<br>
-                    - <span class="font-medium">사계 중 '가을'</span> (비발디)<br>
-                    - <span class="font-medium">오페라의 유령 메들리</span> (앤드루 로이드 웨버)<br>
-                    - <span class="font-medium">라디오 스타</span> (노영심)
-                </li>
-            </ul>
-        </div>
+        <!-- 6페이지 -->
+        <div id="page-6" class="page" style="background-image: url('https://raw.githubusercontent.com/Monster-GD/music-concert-sanam/dd56782b4b8a73103dcc87c9a2df29f0dbc85c4d/%EB%AA%A8%EB%B0%94%EC%9D%BC%20%EC%B4%88%EB%8C%80_6.jpg');"></div>
     </div>
+    
+    <!-- 네비게이션 버튼 및 인디케이터 -->
+    <button id="prevBtn" class="nav-button nav-button-left" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button id="nextBtn" class="nav-button nav-button-right">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+    
+    <div id="indicators" class="indicators"></div>
+
+    <script>
+        const container = document.getElementById('container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.getElementById('indicators');
+        const pages = document.querySelectorAll('.page');
+        let currentPageIndex = 0;
+
+        function updateUI() {
+            // 현재 페이지에 따라 버튼 숨기기/보이기
+            if (currentPageIndex === 0) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+            }
+            if (currentPageIndex === pages.length - 1) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'block';
+            }
+
+            // 인디케이터 업데이트
+            indicators.innerHTML = '';
+            pages.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (index === currentPageIndex) {
+                    indicator.classList.add('active');
+                }
+                indicator.addEventListener('click', () => {
+                    currentPageIndex = index;
+                    pages[currentPageIndex].scrollIntoView({ behavior: 'smooth' });
+                    updateUI();
+                });
+                indicators.appendChild(indicator);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                pages[currentPageIndex].scrollIntoView({ behavior: 'smooth' });
+                updateUI();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                pages[currentPageIndex].scrollIntoView({ behavior: 'smooth' });
+                updateUI();
+            }
+        });
+
+        // 스와이프 감지
+        let startX = 0;
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        container.addEventListener('touchend', (e) => {
+            let endX = e.changedTouches[0].clientX;
+            // 50px 이상 스와이프했을 때만 페이지 이동
+            if (startX - endX > 50) {
+                nextBtn.click();
+            } else if (endX - startX > 50) {
+                prevBtn.click();
+            }
+        });
+        
+        // 초기 UI 업데이트
+        window.onload = function() {
+            updateUI();
+        };
+    </script>
 </body>
 </html>
